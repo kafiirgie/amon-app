@@ -2,7 +2,7 @@ import { View, Text, Image, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import Button from "../common/button/Button";
-import { images, COLORS, FONT, SIZES } from "../../constants";
+import { images, COLORS, FONTS, SIZES } from "../../constants";
 
 export default function SelectChildEmpty() {
   const navigation = useNavigation();
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     paddingTop: "40%",
   },
   body: {
-    fontFamily: FONT.regular,
+    fontFamily: FONTS.regular,
     color: COLORS.neutral2,
     fontSize: SIZES.medium,
     textAlign: "center",

@@ -1,6 +1,6 @@
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
-import { images, COLORS, FONT, SIZES } from "../../../constants";
+import { COLORS } from "../../../constants";
 
 export default function CardAddChildren({ handlePress }) {
   return (

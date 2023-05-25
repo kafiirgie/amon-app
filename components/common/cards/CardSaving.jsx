@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
 import ButtoninCard from "../button/ButtoninCard";
-import { images, COLORS, FONT, SIZES } from "../../../constants";
+import { images, COLORS, FONTS, SIZES } from "../../../constants";
 
 export default function CardSaving({ amount, handlePress }) {
   return (
@@ -42,12 +42,12 @@ const styles = StyleSheet.create({
     // backgroundColor: "gray",
   },
   text: {
-    fontFamily: FONT.regular,
+    fontFamily: FONTS.regular,
     color: COLORS.white,
     fontSize: SIZES.small,
   },
   amount: {
-    fontFamily: FONT.semiBold,
+    fontFamily: FONTS.semiBold,
     color: COLORS.yellow,
     fontSize: SIZES.large,
     marginBottom: 12,

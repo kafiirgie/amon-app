@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
-import { COLORS, FONT, SIZES } from "../../../constants";
+import { COLORS, FONTS, SIZES } from "../../../constants";
 
 export default function HeaderwithDesc({ title, desc }) {
   return (
@@ -15,12 +15,12 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
   },
   headerTitle: {
-    fontFamily: FONT.semiBold,
+    fontFamily: FONTS.semiBold,
     color: COLORS.neutral,
     fontSize: SIZES.xxLarge,
   },
   headerDesc: {
-    fontFamily: FONT.regular,
+    fontFamily: FONTS.regular,
     color: COLORS.neutral2,
     fontSize: SIZES.small,
     marginTop: 8,

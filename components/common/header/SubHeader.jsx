@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { COLORS, FONT, SIZES } from "../../../constants";
+import { COLORS, FONTS, SIZES } from "../../../constants";
 
 export default function SubHeader({ title, navigation, handlePressNav }) {
   return (
@@ -16,23 +16,21 @@ const styles = StyleSheet.create({
   subheadContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 16,
-    // backgroundColor: "gray",
+    marginBottom: 6,
   },
   title: {
-    fontFamily: FONT.semiBold,
+    fontFamily: FONTS.semiBold,
     fontSize: SIZES.xLarge,
     color: COLORS.neutral,
   },
   navContainer: {
     justifyContent: "flex-end",
     paddingBottom: 4,
-    // backgroundColor: "red",
   },
   navigation: {
-    fontFamily: FONT.semiBold,
-    fontSize: SIZES.xSmall,
-    color: COLORS.neutral,
-    // letterSpacing: 1.1,
+    fontFamily: FONTS.semiBold,
+    fontSize: SIZES.small,
+    color: COLORS.tosca,
+    letterSpacing: 0.8,
   },
 });

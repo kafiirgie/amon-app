@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 
-import { COLORS, FONT, SIZES } from "../../../constants";
+import { COLORS, FONTS, SIZES } from "../../../constants";
 import { auth } from "../../../config/firebase";
 import { db } from "../../../config/firebase";
 import Button from "../button/Button";
@@ -141,12 +141,12 @@ const styles = StyleSheet.create({
     borderColor: COLORS.primary4,
     padding: 12,
     width: "100%",
-    fontFamily: FONT.regular,
+    fontFamily: FONTS.regular,
     color: COLORS.neutral,
     fontSize: SIZES.medium,
   },
   errorInput: {
-    fontFamily: FONT.regular,
+    fontFamily: FONTS.regular,
     color: COLORS.red,
     fontSize: SIZES.small,
     marginBottom: 4,

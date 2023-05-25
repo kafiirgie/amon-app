@@ -12,12 +12,17 @@ const COLORS = {
   white: "#FFFFFF",
 
   red: "#E53935",
+  blue: "#2FA1DA",
   yellow: "#F8E85D",
   purple: "#B468FF",
   tosca: "#00C7AB",
+  tosca2: "#E7F2F2",
+  orange: "#EF6C00",
+  orange2: "#FFCC80",
+  orange3: "#FFE0B2",
 };
 
-const FONT = {
+const FONTS = {
   regular: "Lexend-Regular",
   semiBold: "Lexend-SemiBold",
 };
@@ -33,4 +38,4 @@ const SIZES = {
   xxxLarge: 48,
 };
 
-export { COLORS, FONT, SIZES };
+export { COLORS, FONTS, SIZES };

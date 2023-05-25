@@ -1,26 +1,38 @@
+import { useState, useEffect } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useState, useEffect } from "react";
 
-import { auth } from "../config/firebase";
 import UserNavigation from "./UserNavigation";
 import AuthNavigation from "./AuthNavigation";
-import { useAuth } from "../hooks/useAuth";
 import { AppLoaders } from "../components";
+import { auth } from "../config/firebase";
+import { useAuth } from "../hooks/useAuth";
 
 export default function RootNavigation() {
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
   const { user } = useAuth();
 
+  const authenticateUser = async () => {
+    try {
+      setLoading(true);
+      const userEmail = await AsyncStorage.getItem("userEmail");
+      const userPassword = await AsyncStorage.getItem("userPassword");
+      if (userEmail && userPassword) {
+        signInWithEmailAndPassword(auth, userEmail, userPassword)
+          .then(() => {})
+          .catch((err) => {
+            console.error(err);
+          });
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    authenticateUser()
-      .then(() => {})
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    authenticateUser();
   }, []);
 
   return isLoading ? (
@@ -31,19 +43,3 @@ export default function RootNavigation() {
     <AuthNavigation />
   );
 }
-
-const authenticateUser = async () => {
-  try {
-    const userEmail = await AsyncStorage.getItem("userEmail");
-    const userPassword = await AsyncStorage.getItem("userPassword");
-    if (userEmail && userPassword) {
-      signInWithEmailAndPassword(auth, userEmail, userPassword)
-        .then(() => {})
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};

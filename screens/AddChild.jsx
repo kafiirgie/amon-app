@@ -8,7 +8,7 @@ import {
 } from "react-native";
 
 import globalStyles from "../styles/global";
-import { images, icons, COLORS, FONT, SIZES } from "../constants";
+import { images, icons, COLORS, FONTS, SIZES } from "../constants";
 import { Header, AddChildForm } from "../components";
 
 export default function AddChildScreen({ navigation }) {
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     padding: 24,
   },
   title: {
-    fontFamily: FONT.semiBold,
+    fontFamily: FONTS.semiBold,
     color: COLORS.neutral,
     fontSize: SIZES.large,
     paddingVertical: 24,

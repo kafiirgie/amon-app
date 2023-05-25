@@ -1,10 +1,13 @@
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
-import { images, COLORS, FONT, SIZES } from "../../../constants";
+import { images, COLORS, FONTS, SIZES } from "../../../constants";
 
-export default function CardChildren({ name, handlePress }) {
+export default function CardChildren({ id, name, handlePress }) {
+  const onPress = () => {
+    handlePress(id);
+  };
   return (
-    <TouchableOpacity onPress={handlePress} style={styles.cardContainer}>
+    <TouchableOpacity onPress={onPress} style={styles.cardContainer}>
       <View style={styles.imageContainer}>
         <Image source={images.amonDefault} style={{ width: 90, height: 90 }} />
       </View>
@@ -44,7 +47,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
   name: {
-    fontFamily: FONT.regular,
+    fontFamily: FONTS.regular,
     color: COLORS.white,
     fontSize: SIZES.medium,
   },

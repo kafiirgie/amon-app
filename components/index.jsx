@@ -27,7 +27,8 @@ import AddChildForm from "./common/forms/AddChildForm";
 import Header from "./common/header/Header";
 import SubHeader from "./common/header/SubHeader";
 import HeaderwithDesc from "./common/header/HeaderwithDesc";
-import HeaderwithImage from "./common/header/HeaderwithImage";
+import HeaderHome from "./common/header/HeaderHome";
+import HeaderAchieve from "./common/header/HeaderAchieve";
 
 // Select Child
 import SelectChildEmpty from "./selectchild/SelectChildEmpty";
@@ -62,7 +63,8 @@ export {
   Header,
   SubHeader,
   HeaderwithDesc,
-  HeaderwithImage,
+  HeaderHome,
+  HeaderAchieve,
   SelectChildEmpty,
   SelectChildFilled,
   GoalsEmpty,

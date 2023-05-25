@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
-import { images, COLORS, FONT, SIZES } from "../../../constants";
+import { images, COLORS, FONTS, SIZES } from "../../../constants";
 
 export default function CardMoney({ amount }) {
   return (
@@ -26,12 +26,12 @@ const styles = StyleSheet.create({
   },
   amount: {
     marginTop: 8,
-    fontFamily: FONT.semiBold,
+    fontFamily: FONTS.semiBold,
     color: COLORS.neutral,
     fontSize: SIZES.medium,
   },
   text: {
-    fontFamily: FONT.semiBold,
+    fontFamily: FONTS.semiBold,
     color: COLORS.neutral2,
     fontSize: SIZES.xSmall,
   },

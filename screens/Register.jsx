@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import { images, COLORS, FONT, SIZES } from "../constants";
+import { images, COLORS, FONTS, SIZES } from "../constants";
 import globalStyles from "../styles/global";
 import { RegisterForm } from "../components";
 
@@ -55,13 +55,13 @@ const styles = StyleSheet.create({
     paddingBottom: "5%",
   },
   heading: {
-    fontFamily: FONT.semiBold,
+    fontFamily: FONTS.semiBold,
     fontSize: SIZES.xxLarge,
     color: COLORS.primary,
     marginBottom: 10,
   },
   body: {
-    fontFamily: FONT.regular,
+    fontFamily: FONTS.regular,
     color: COLORS.neutral,
     fontSize: SIZES.medium,
   },

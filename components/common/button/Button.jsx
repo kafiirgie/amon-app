@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity } from "react-native";
 import React from "react";
-import { COLORS, FONT, SIZES } from "../../../constants";
+import { COLORS, FONTS, SIZES } from "../../../constants";
 
 export default function Button({ text, handlePress, isLarge }) {
   return (
@@ -15,7 +15,7 @@ export default function Button({ text, handlePress, isLarge }) {
     >
       <Text
         style={{
-          fontFamily: FONT.regular,
+          fontFamily: FONTS.regular,
           color: COLORS.white,
           fontSize: isLarge ? SIZES.large : SIZES.medium,
         }}

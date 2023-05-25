@@ -1,6 +1,6 @@
 import { View, Text, Image, StyleSheet } from "react-native";
 
-import { images, COLORS, FONT, SIZES } from "../../../constants";
+import { images, COLORS, FONTS, SIZES } from "../../../constants";
 
 export default function CardProfile({ name }) {
   return (
@@ -32,12 +32,12 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   greetings: {
-    fontFamily: FONT.regular,
+    fontFamily: FONTS.regular,
     color: COLORS.neutral2,
     fontSize: SIZES.xSmall,
   },
   name: {
-    fontFamily: FONT.semiBold,
+    fontFamily: FONTS.semiBold,
     color: COLORS.primary,
     fontSize: SIZES.xLarge,
     lineHeight: 30,

@@ -1,5 +1,5 @@
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
-import { COLORS, FONT, SIZES } from "../../../constants";
+import { COLORS, FONTS, SIZES } from "../../../constants";
 
 export default function Header({
   title,
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   headerTitle: {
-    fontFamily: FONT.semiBold,
+    fontFamily: FONTS.semiBold,
     color: COLORS.neutral,
     fontSize: SIZES.xLarge,
     paddingTop: 24,

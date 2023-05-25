@@ -5,10 +5,8 @@ import * as Yup from "yup";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { COLORS, FONT, SIZES } from "../../../constants";
+import { COLORS, FONTS, SIZES } from "../../../constants";
 import { auth } from "../../../config/firebase";
-import { useAuth } from "../../../hooks/useAuth";
-import { getAuth } from "firebase/auth";
 import Button from "../button/Button";
 
 const LoginSchema = Yup.object({
@@ -100,12 +98,12 @@ const styles = StyleSheet.create({
     borderColor: COLORS.primary4,
     padding: 12,
     width: "100%",
-    fontFamily: FONT.regular,
+    fontFamily: FONTS.regular,
     color: COLORS.neutral,
     fontSize: SIZES.medium,
   },
   errorInput: {
-    fontFamily: FONT.regular,
+    fontFamily: FONTS.regular,
     color: COLORS.red,
     fontSize: SIZES.small,
     marginBottom: 4,

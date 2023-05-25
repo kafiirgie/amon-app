@@ -1,7 +1,7 @@
 import { SafeAreaView, Text, StyleSheet, Image } from "react-native";
 
 import globalStyles from "../styles/global";
-import { images, COLORS, FONT, SIZES } from "../constants";
+import { images, COLORS, FONTS, SIZES } from "../constants";
 import { Button } from "../components";
 
 export default function WelcomeScreen({ navigation }) {
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     height: 384,
   },
   body: {
-    fontFamily: FONT.regular,
+    fontFamily: FONTS.regular,
     color: COLORS.primary,
     fontSize: SIZES.large,
     textAlign: "center",

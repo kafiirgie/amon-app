@@ -1,3 +1,4 @@
+import { useState, useContext } from "react";
 import {
   SafeAreaView,
   Text,
@@ -5,6 +6,7 @@ import {
   StyleSheet,
   Image,
   ScrollView,
+  StatusBar,
 } from "react-native";
 import { useRoute } from "@react-navigation/native";
 
@@ -18,17 +20,41 @@ import {
   MissionsEmpty,
   MissionsFilled,
 } from "../../components";
-
-const goals = [];
-const missions = [];
+import { COLORS } from "../../constants";
+import { ChildDataContext } from "../../context";
 
 export default function ActivityScreen() {
-  const route = useRoute();
-  const { name, total_points, total_savings, year_of_birth } =
-    route.params?.childData;
+  const [childData, setChildData] = useContext(ChildDataContext);
+  const { name, total_points, total_savings } = childData;
+  const [goals, setGoals] = useState([
+    {
+      name: "Boneka Pony Lucu Banget",
+      end_date: "23 HARI LAGI",
+      reward: 80,
+      target: 100000,
+      current_value: 30000,
+    },
+  ]);
+  const [missions, setMissions] = useState([
+    {
+      name: "Menambah tabungan Rp10.000",
+      end_date: "11 hari lagi",
+      reward: 10,
+      status: "to-do",
+    },
+    {
+      name: "Membaca artikel minggu ini",
+      end_date: "1 hari lagi",
+      reward: 5,
+      status: "pending",
+    },
+  ]);
   return (
     <SafeAreaView style={globalStyles.androidSafeArea}>
-      <ScrollView style={styles.screenContainer}>
+      <ScrollView
+        contentContainerStyle={styles.container}
+        showsVerticalScrollIndicator={false}
+      >
         <HeaderwithDesc
           title={"Aktivitas"}
           desc={"Tetapkan target dan selesaikan misi untuk mendapatkan poin!"}
@@ -38,11 +64,15 @@ export default function ActivityScreen() {
         </View>
         <View style={styles.goalsContainer}>
           <SubHeader title={"Target"} />
-          {goals.length > 0 ? <GoalsFilled /> : <GoalsEmpty />}
+          {goals.length > 0 ? <GoalsFilled goals={goals} /> : <GoalsEmpty />}
         </View>
         <View style={styles.missionsContainer}>
           <SubHeader title={"Misi"} />
-          {missions.length > 0 ? <MissionsFilled /> : <MissionsEmpty />}
+          {missions.length > 0 ? (
+            <MissionsFilled missions={missions} />
+          ) : (
+            <MissionsEmpty />
+          )}
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -50,16 +80,12 @@ export default function ActivityScreen() {
 }
 
 const styles = StyleSheet.create({
-  screenContainer: {
+  container: {
+    flexGrow: 1,
+    // justifyContent: "flex-end",
+    backgroundColor: COLORS.white,
     padding: 24,
-  },
-  savingContainer: {
-    marginTop: 16,
-  },
-  goalsContainer: {
-    marginTop: 16,
-  },
-  missionsContainer: {
-    marginTop: 16,
+    paddingBottom: 120,
+    rowGap: 16,
   },
 });
