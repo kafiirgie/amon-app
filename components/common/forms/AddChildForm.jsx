@@ -1,37 +1,53 @@
+import { useContext } from "react";
 import { View, Text, TextInput, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 import { COLORS, FONTS, SIZES } from "../../../constants";
-import { auth } from "../../../config/firebase";
 import { db } from "../../../config/firebase";
 import Button from "../button/Button";
+import { UserContext, ChildrenContext } from "../../../context";
 
-const currentYear = new Date().getFullYear();
 const AddChildSchema = Yup.object({
   name: Yup.string()
     .min(2, "Nama anak terlalu singkat")
+    .max(10, "Oops, nama terlalu panjang, masukan nama panggilan saja ya")
     .required("Nama wajib diisi"),
-  birthyear: Yup.number().required("Tahun kelahiran wajib diisi"),
-  passcode: Yup.string()
-    .trim()
-    .min(4, "Passcode terlalu singkat")
-    .max(4, "Passcode terlalu panjang")
+  passcode: Yup.number()
+    .min(1000, "Passcode terlalu singkat")
     .required("Passcode wajib diisi"),
+  confirmPasscode: Yup.number().oneOf(
+    [Yup.ref("passcode")],
+    "Passcode tidak sesuai"
+  ),
 });
 
 export default function AddChildForm() {
-  // const navigation = useNavigation();
+  const navigation = useNavigation();
+  const [email, setEmail] = useContext(UserContext);
+  const [children, setChildren] = useContext(ChildrenContext);
   return (
     <View style={styles.formContainer}>
       <Formik
         initialValues={{ name: "", birthyear: "", passcode: "" }}
         validationSchema={AddChildSchema}
-        onSubmit={(values) => {
-          console.log(values);
+        onSubmit={async (values) => {
+          try {
+            const id = values.name.trim().toLowerCase();
+            const newChild = {
+              name: values.name,
+              passcode: values.passcode,
+              total_points: 0,
+              total_savings: 0,
+            };
+            await setDoc(doc(db, "parents", email, "children", id), newChild);
+            setChildren((children) => [...children, { ...newChild, id: id }]);
+            navigation.navigate("SelectChild");
+          } catch (err) {
+            console.error("Error saving child data:", err);
+          }
         }}
       >
         {({
@@ -52,19 +68,8 @@ export default function AddChildForm() {
                 value={values.name}
               />
               <Text style={styles.errorInput}>
-                <Text> </Text>
                 {touched.name && errors.name}
-              </Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Tahun Kelahiran"
-                onChangeText={handleChange("birthyear")}
-                onBlur={handleBlur("birthyear")}
-                value={values.birthyear}
-              />
-              <Text style={styles.errorInput}>
                 <Text> </Text>
-                {touched.birthyear && errors.birthyear}
               </Text>
               <TextInput
                 style={styles.input}
@@ -72,11 +77,25 @@ export default function AddChildForm() {
                 onChangeText={handleChange("passcode")}
                 onBlur={handleBlur("passcode")}
                 value={values.passcode}
+                keyboardType="number-pad"
+                secureTextEntry
+              />
+              <Text style={styles.errorInput}>
+                {touched.passcode && errors.passcode}
+                <Text> </Text>
+              </Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Konfirmasi Passcode"
+                onChangeText={handleChange("confirmPasscode")}
+                onBlur={handleBlur("confirmPasscode")}
+                value={values.confirmPasscode}
+                keyboardType="number-pad"
                 secureTextEntry
               />
               <Text style={styles.errorInput}>
                 <Text> </Text>
-                {touched.passcode && errors.passcode}
+                {touched.confirmPasscode && errors.confirmPasscode}
               </Text>
             </View>
             <View style={styles.formButton}>
@@ -116,7 +135,8 @@ const styles = StyleSheet.create({
     fontFamily: FONTS.regular,
     color: COLORS.red,
     fontSize: SIZES.small,
-    marginBottom: 4,
+    marginBottom: 8,
+    marginLeft: 8,
   },
   formButton: {
     marginTop: 16,

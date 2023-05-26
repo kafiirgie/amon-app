@@ -21,32 +21,32 @@ export default function UserNavigation() {
   const [children, setChildren] = useState([]);
   const [selectedChildId, setSelectedChildId] = useState();
 
-  const [isLoading, setLoading] = useState(false);
-  const childrenRef = collection(db, "parents", email, "children");
-  const getChildrenName = async () => {
-    try {
-      setLoading(true);
-      const data = await getDocs(childrenRef);
-      const filteredData = data.docs.map((doc) => ({
-        id: doc.id,
-        name: doc.data().name,
-      }));
-      console.log("Children Name : ", filteredData);
-      setChildren(filteredData);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const [isLoading, setLoading] = useState(false);
+  // const childrenRef = collection(db, "parents", email, "children");
+  // const getChildrenName = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const data = await getDocs(childrenRef);
+  //     const filteredData = data.docs.map((doc) => ({
+  //       id: doc.id,
+  //       name: doc.data().name,
+  //     }));
+  //     console.log("Children Name : ", filteredData);
+  //     setChildren(filteredData);
+  //   } catch (err) {
+  //     console.error(err);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
-  useEffect(() => {
-    getChildrenName();
-  }, []);
+  // useEffect(() => {
+  //   getChildrenName();
+  // }, []);
 
-  if (isLoading) {
-    return <AppLoaders />;
-  }
+  // if (isLoading) {
+  //   return <AppLoaders />;
+  // }
 
   return (
     <UserContext.Provider value={[email, setEmail]}>

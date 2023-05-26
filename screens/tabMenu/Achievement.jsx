@@ -13,7 +13,7 @@ import { ChildDataContext } from "../../context";
 
 export default function AchievementScreen() {
   const [childData, setChildData] = useContext(ChildDataContext);
-  const { name, total_points, total_savings } = childData;
+  const total_points = childData?.total_points;
   return (
     <SafeAreaView style={globalStyles.androidSafeArea}>
       <ScrollView

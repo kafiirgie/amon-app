@@ -21,34 +21,13 @@ import {
   MissionsFilled,
 } from "../../components";
 import { COLORS } from "../../constants";
-import { ChildDataContext } from "../../context";
+import { ChildDataContext, GoalsContext, MissionsContext } from "../../context";
 
 export default function ActivityScreen() {
   const [childData, setChildData] = useContext(ChildDataContext);
-  const { name, total_points, total_savings } = childData;
-  const [goals, setGoals] = useState([
-    {
-      name: "Boneka Pony Lucu Banget",
-      end_date: "23 HARI LAGI",
-      reward: 80,
-      target: 100000,
-      current_value: 30000,
-    },
-  ]);
-  const [missions, setMissions] = useState([
-    {
-      name: "Menambah tabungan Rp10.000",
-      end_date: "11 hari lagi",
-      reward: 10,
-      status: "to-do",
-    },
-    {
-      name: "Membaca artikel minggu ini",
-      end_date: "1 hari lagi",
-      reward: 5,
-      status: "pending",
-    },
-  ]);
+  const [goals, setGoals] = useContext(GoalsContext);
+  const [missions, setMissions] = useContext(MissionsContext);
+  const total_savings = childData?.total_savings;
   return (
     <SafeAreaView style={globalStyles.androidSafeArea}>
       <ScrollView

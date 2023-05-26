@@ -46,8 +46,8 @@ export default function RegisterForm() {
                   email: values.email,
                 });
                 navigation.navigate("UserNavigation");
-              } catch (er) {
-                console.error("Error saving user data:", er);
+              } catch (err) {
+                console.error("Error saving user data:", err);
               }
             })
             .catch((er) => {

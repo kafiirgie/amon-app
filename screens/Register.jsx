@@ -15,7 +15,10 @@ import { RegisterForm } from "../components";
 export default function RegisterScreen({ navigation }) {
   return (
     <SafeAreaView style={globalStyles.androidSafeArea}>
-      <ScrollView contentContainerStyle={styles.authContainer}>
+      <ScrollView
+        contentContainerStyle={styles.authContainer}
+        showsVerticalScrollIndicator={false}
+      >
         <View style={{ alignItems: "center" }}>
           <Image source={images.amonLockCircle} style={styles.amonImage} />
         </View>

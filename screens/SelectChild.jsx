@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SafeAreaView, Text, TouchableOpacity } from "react-native";
 import { collection, getDocs } from "firebase/firestore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -13,10 +13,39 @@ import {
   SelectChildFilled,
 } from "../components";
 import { icons } from "../constants";
-import { ChildrenContext } from "../context";
+import { UserContext, ChildrenContext } from "../context";
 
 export default function SelectChildScreen() {
+  const [email, setEmail] = useContext(UserContext);
   const [children, setChildren] = useContext(ChildrenContext);
+
+  const [isLoading, setLoading] = useState(false);
+  const childrenRef = collection(db, "parents", email, "children");
+  const getChildrenName = async () => {
+    try {
+      setLoading(true);
+      const data = await getDocs(childrenRef);
+      const filteredData = data.docs.map((doc) => ({
+        id: doc.id,
+        name: doc.data().name,
+      }));
+      console.log("Children Name : ", filteredData);
+      setChildren(filteredData);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    console.log("CHECK");
+    getChildrenName();
+  }, []);
+
+  if (isLoading) {
+    return <AppLoaders />;
+  }
 
   return (
     <SafeAreaView style={globalStyles.androidSafeArea}>

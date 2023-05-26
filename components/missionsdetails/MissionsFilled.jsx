@@ -7,19 +7,19 @@ import CardMission from "../common/cards/CardMission";
 import { COLORS, FONTS, SIZES } from "../../constants";
 
 export default function MissionsFilled({ missions }) {
-  // const navigation = useNavigation();
-  // const [selectedMission, setSelectedMission] = useState("");
-  // const handleCardPress = (name) => {
-  //   setSelectedMission(name);
-  //   navigation.navigate("TabNavigation", { selectedMission: name });
-  // };
   return (
     <View style={styles.bodyContainer}>
       <Text style={styles.text}>
         Tekan “Tandai Selesai” jika kamu sudah melakukan misi.
       </Text>
-      {missions.map((mission, i) => {
-        return <CardMission {...mission} key={i} />;
+      {missions.map((mission) => {
+        return (
+          <CardMission
+            {...mission}
+            key={mission.id}
+            end_date={mission.end_date.toString()}
+          />
+        );
       })}
     </View>
   );

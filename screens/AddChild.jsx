@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   ImageBackground,
   StyleSheet,
+  ScrollView,
 } from "react-native";
 
 import globalStyles from "../styles/global";
@@ -19,22 +20,24 @@ export default function AddChildScreen({ navigation }) {
         resizeMode="cover"
         style={styles.imageBg}
       >
-        <Header
-          leftIcon={icons.backLight}
-          handlePressLeftIcon={() => navigation.goBack()}
-        ></Header>
-        <View style={{ padding: 24 }}>
-          <View style={styles.formContainer}>
-            <Text style={styles.title}>Buat Akun Anak</Text>
-            <View style={styles.imageContainer}>
-              <Image
-                source={images.amonDefault}
-                style={{ width: 88, height: 88 }}
-              />
+        <ScrollView contentContainerStyle={styles.authContainer}>
+          <Header
+            leftIcon={icons.backLight}
+            handlePressLeftIcon={() => navigation.goBack()}
+          ></Header>
+          <View style={{ padding: 24 }}>
+            <View style={styles.formContainer}>
+              <Text style={styles.title}>Buat Akun Anak</Text>
+              <View style={styles.imageContainer}>
+                <Image
+                  source={images.amonDefault}
+                  style={{ width: 88, height: 88 }}
+                />
+              </View>
+              <AddChildForm />
             </View>
-            <AddChildForm />
           </View>
-        </View>
+        </ScrollView>
       </ImageBackground>
     </SafeAreaView>
   );
@@ -44,6 +47,7 @@ const styles = StyleSheet.create({
   imageBg: {
     flex: 1,
   },
+  authContainer: {},
   formContainer: {
     backgroundColor: COLORS.white,
     justifyContent: "center",

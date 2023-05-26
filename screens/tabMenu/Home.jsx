@@ -23,36 +23,19 @@ import {
   MissionsEmpty,
 } from "../../components";
 import { COLORS } from "../../constants";
-import { ChildDataContext } from "../../context";
+import { ChildDataContext, GoalsContext, MissionsContext } from "../../context";
 
 export default function HomeScreen({ navigation }) {
   const [childData, setChildData] = useContext(ChildDataContext);
+  const [goals, setGoals] = useContext(GoalsContext);
+  const [missions, setMissions] = useContext(MissionsContext);
   const name = childData?.name;
   const total_points = childData?.total_points;
   const total_savings = childData?.total_savings;
-  const [goals, setGoals] = useState([
-    {
-      name: "Boneka Pony Lucu Banget",
-      end_date: "23 HARI LAGI",
-      reward: 80,
-      target: 100000,
-      current_value: 30000,
-    },
-  ]);
-  const [missions, setMissions] = useState([
-    {
-      name: "Menambah tabungan Rp10.000",
-      end_date: "11 hari lagi",
-      reward: 10,
-      status: "to-do",
-    },
-    {
-      name: "Membaca artikel minggu ini",
-      end_date: "1 hari lagi",
-      reward: 5,
-      status: "pending",
-    },
-  ]);
+
+  console.log("GOALS: ", goals);
+  console.log("MISI: ", missions);
+
   return (
     <SafeAreaView
       style={[

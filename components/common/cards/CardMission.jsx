@@ -1,36 +1,57 @@
+import { useState } from "react";
 import { View, Text, Pressable, StyleSheet, Image } from "react-native";
 
 import { images, COLORS, FONTS, SIZES } from "../../../constants";
 import ButtoninCard from "../button/ButtoninCard";
-import { useState } from "react";
 
 export default function CardMission({
   name,
   end_date,
   reward,
-  status,
-  handlePress,
+  is_done,
+  is_pending,
 }) {
-  const [done, setDone] = useState(false);
+  // const [done, setDone] = useState(is_done);
+  // const [pending, setPending] = useState(is_pending);
+  const currentDate = new Date();
+  const endDate = new Date(end_date);
+  const diffms = endDate - currentDate;
+  const diffDays = Math.ceil(diffms / (1000 * 60 * 60 * 24));
+  const months = [
+    "Januari",
+    "Februari",
+    "Maret",
+    "April",
+    "Mei",
+    "Juni",
+    "Juli",
+    "Agustus",
+    "September",
+    "Oktober",
+    "November",
+    "Desember",
+  ];
   return (
-    <Pressable
-      // style={({ pressed }) => [styles.container, pressed && styles.pressed]}
-      style={styles.container}
-    >
+    <Pressable style={styles.container}>
       <View style={styles.circle} />
       <View style={{ height: 32 }}>
         <Text style={styles.text}>{name} </Text>
       </View>
-      <Text style={[styles.text, { color: COLORS.neutral2 }]}>{end_date}</Text>
+      <Text style={[styles.text, { color: COLORS.primary }]}>
+        {diffDays > 7
+          ? `${endDate.getDate()} ${
+              months[endDate.getMonth()]
+            } ${endDate.getFullYear()}`
+          : `${diffDays} Hari lagi`}
+      </Text>
       <View style={{ flexDirection: "row", columnGap: 4 }}>
         <Image source={images.amonPoint} style={{ width: 16, height: 16 }} />
         <Text style={styles.text}>{reward}</Text>
       </View>
       <ButtoninCard
-        text={done ? "Selesai" : "Tandai Selesai"}
-        isGreen={done ? false : true}
+        text={is_done ? "Selesai" : "Tandai Selesai"}
         isFull={true}
-        handlePress={() => setDone(!done)}
+        // handlePress={() => setDone(!done)}
       />
     </Pressable>
   );

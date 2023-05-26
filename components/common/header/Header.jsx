@@ -16,7 +16,9 @@ export default function Header({
       >
         <Image source={leftIcon} style={styles.icon} />
       </TouchableOpacity>
-      <Text style={styles.headerTitle}>{title}</Text>
+      <View style={styles.titleContainer}>
+        <Text style={styles.headerTitle}>{title}</Text>
+      </View>
       <TouchableOpacity
         style={styles.headedrIcon}
         onPress={handlePressRightIcon}
@@ -32,12 +34,20 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    height: 64,
   },
   headedrIcon: {
     width: 72,
-    height: 72,
+    height: "100%",
+    justifyContent: "flex-end",
     alignItems: "center",
+    paddingBottom: 8,
+  },
+  titleContainer: {
+    flex: 1,
+    height: "100%",
     justifyContent: "center",
+    alignItems: "center",
   },
   headerTitle: {
     fontFamily: FONTS.semiBold,
