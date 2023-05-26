@@ -12,7 +12,7 @@ export default function HeaderHome({ name }) {
         resizeMode: "cover",
         height: 120,
         position: "absolute",
-        top: -20,
+        bottom: 20,
       }}
     >
       <View style={{ padding: 24 }}>

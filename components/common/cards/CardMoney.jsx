@@ -1,10 +1,15 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import { images, COLORS, FONTS, SIZES } from "../../../constants";
 
 export default function CardMoney({ amount }) {
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity style={styles.cardContainer}>
+    <TouchableOpacity
+      style={styles.cardContainer}
+      onPress={() => navigation.navigate("Activity")}
+    >
       <Image source={images.amonCoin} style={{ width: 56, height: 56 }} />
       <Text style={styles.amount}>Rp{amount}</Text>
       <Text style={styles.text}>ditabung</Text>

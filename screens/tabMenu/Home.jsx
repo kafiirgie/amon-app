@@ -25,9 +25,11 @@ import {
 import { COLORS } from "../../constants";
 import { ChildDataContext } from "../../context";
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
   const [childData, setChildData] = useContext(ChildDataContext);
-  const { name, total_points, total_savings } = childData;
+  const name = childData?.name;
+  const total_points = childData?.total_points;
+  const total_savings = childData?.total_savings;
   const [goals, setGoals] = useState([
     {
       name: "Boneka Pony Lucu Banget",
@@ -73,11 +75,19 @@ export default function HomeScreen() {
             <CardReadArticle />
           </View>
           <View style={styles.goalsContainer}>
-            <SubHeader title={"Target"} navigation={"Selengkapnya"} />
+            <SubHeader
+              title={"Target"}
+              navigation={"Selengkapnya"}
+              handlePressNav={() => navigation.navigate("Activity")}
+            />
             {goals.length > 0 ? <GoalsFilled goals={goals} /> : <GoalsEmpty />}
           </View>
           <View style={styles.missionsContainer}>
-            <SubHeader title={"Misi"} navigation={"Selengkapnya"} />
+            <SubHeader
+              title={"Misi"}
+              navigation={"Selengkapnya"}
+              handlePressNav={() => navigation.navigate("Activity")}
+            />
             {missions.length > 0 ? (
               <MissionsFilled missions={missions} />
             ) : (

@@ -1,9 +1,11 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import { images, COLORS, FONTS, SIZES } from "../../../constants";
 import ButtoninCard from "../button/ButtoninCard";
 
 export default function CardPointsExtended({ amount }) {
+  const navigation = useNavigation();
   return (
     <View style={styles.cardContainer}>
       <View style={styles.amountContainer}>
@@ -13,7 +15,11 @@ export default function CardPointsExtended({ amount }) {
       <View style={styles.bodyContainer}>
         <Text style={styles.text}>Kerjakan Misi dan kumpulkan Poin!</Text>
         <View>
-          <ButtoninCard text={"Lihat Misi"} isGreen />
+          <ButtoninCard
+            text={"Lihat Misi"}
+            isGreen
+            handlePress={() => navigation.navigate("Activity")}
+          />
         </View>
       </View>
     </View>

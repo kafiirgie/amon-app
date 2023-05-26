@@ -15,10 +15,7 @@ export default function CardGoal({
   const [done, setDone] = useState(false);
   const progress = (current_value / target) * 100;
   return (
-    <Pressable
-      // style={({ pressed }) => [styles.container, pressed && styles.pressed]}
-      style={styles.container}
-    >
+    <Pressable style={styles.container}>
       <View style={styles.circleContainer}>
         <View style={styles.circle1} />
         <View style={styles.circle2} />

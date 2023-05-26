@@ -1,13 +1,11 @@
-import { useState, useEffect, useContext } from "react";
-import { View, StyleSheet, FlatList } from "react-native";
+import { useContext } from "react";
+import { View, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { FlatGrid } from "react-native-super-grid";
-import { doc, getDoc } from "firebase/firestore";
 
 import { SelectedChildIdContext } from "../../context";
 import CardChildren from "../common/cards/CardChildren";
 import CardAddChildren from "../common/cards/CardAddChildren";
-import { db } from "../../config/firebase";
 
 export default function SelectChildFilled({ children }) {
   const navigation = useNavigation();
@@ -22,6 +20,7 @@ export default function SelectChildFilled({ children }) {
   return (
     <View style={styles.bodyContainer}>
       <FlatGrid
+        showsVerticalScrollIndicator={false}
         itemDimension={164}
         data={[...children, {}]}
         renderItem={({ item }) =>

@@ -1,10 +1,15 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import { images, COLORS, FONTS, SIZES } from "../../../constants";
 
 export default function CardPoints({ amount }) {
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity style={styles.cardContainer}>
+    <TouchableOpacity
+      style={styles.cardContainer}
+      onPress={() => navigation.navigate("Achievement")}
+    >
       <Image source={images.amonPoint} style={{ width: 56, height: 56 }} />
       <Text style={styles.amount}>{amount} Poin</Text>
       <Text style={styles.text}>dikumpulkan</Text>

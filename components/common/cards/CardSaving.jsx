@@ -1,11 +1,11 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { View, Text, StyleSheet, Pressable, Image } from "react-native";
 
 import ButtoninCard from "../button/ButtoninCard";
 import { images, COLORS, FONTS, SIZES } from "../../../constants";
 
 export default function CardSaving({ amount, handlePress }) {
   return (
-    <TouchableOpacity style={styles.cardContainer} handlePress={handlePress}>
+    <Pressable style={styles.cardContainer} handlePress={handlePress}>
       <View style={styles.bgContainer}>
         <View style={styles.circle1} />
         <View style={styles.circle2} />
@@ -23,7 +23,7 @@ export default function CardSaving({ amount, handlePress }) {
       <View style={styles.imageContainer}>
         <Image source={images.pig} style={{ width: 96, height: 96 }} />
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 }
 
@@ -32,14 +32,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderRadius: 24,
     backgroundColor: COLORS.tosca,
-    height: 120,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
+    padding: 16,
   },
   textContainer: {
-    paddingHorizontal: 24,
-    width: "70%",
-    // backgroundColor: "gray",
+    width: "68%",
   },
   text: {
     fontFamily: FONTS.regular,
@@ -53,10 +51,11 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   bgContainer: {
-    // position: "absolute",
-    // backgroundColor: "purple",
+    position: "absolute",
     justifyContent: "center",
     alignItems: "center",
+    right: "20%",
+    // top: "56%",
   },
   circle1: {
     width: 100,
@@ -66,7 +65,7 @@ const styles = StyleSheet.create({
     opacity: 0.2,
     position: "absolute",
     // left: 240,
-    right: -339,
+    // right: -339,
   },
   circle2: {
     width: 128,
@@ -76,7 +75,7 @@ const styles = StyleSheet.create({
     opacity: 0.2,
     position: "absolute",
     // left: 225,
-    right: -354,
+    // right: -354,
   },
   circle3: {
     width: 180,
@@ -86,11 +85,10 @@ const styles = StyleSheet.create({
     opacity: 0.2,
     position: "absolute",
     // left: 193,
-    right: -371,
+    // right: -371,
   },
   imageContainer: {
     width: "30%",
-    alignItems: "center",
-    // backgroundColor: "red",
+    alignItems: "flex-end",
   },
 });
