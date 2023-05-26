@@ -19,17 +19,27 @@ import {
   GoalsFilled,
   MissionsEmpty,
   MissionsFilled,
+  ModalAddSaving,
 } from "../../components";
 import { COLORS } from "../../constants";
-import { ChildDataContext, GoalsContext, MissionsContext } from "../../context";
+import {
+  ChildDataContext,
+  GoalsContext,
+  MissionsContext,
+  GoalModalContext,
+  SavingModalContext,
+} from "../../context";
 
 export default function ActivityScreen() {
   const [childData, setChildData] = useContext(ChildDataContext);
   const [goals, setGoals] = useContext(GoalsContext);
   const [missions, setMissions] = useContext(MissionsContext);
+  const [goalModalOpen, setGoalModalOpen] = useContext(GoalModalContext);
+  const [savingModalOpen, setSavingModalOpen] = useContext(SavingModalContext);
   const total_savings = childData?.total_savings;
   return (
     <SafeAreaView style={globalStyles.androidSafeArea}>
+      <ModalAddSaving />
       <ScrollView
         contentContainerStyle={styles.container}
         showsVerticalScrollIndicator={false}
@@ -39,7 +49,10 @@ export default function ActivityScreen() {
           desc={"Tetapkan target dan selesaikan misi untuk mendapatkan poin!"}
         />
         <View style={styles.savingContainer}>
-          <CardSaving amount={total_savings} />
+          <CardSaving
+            amount={total_savings}
+            handlePress={() => setSavingModalOpen(true)}
+          />
         </View>
         <View style={styles.goalsContainer}>
           <SubHeader title={"Target"} />

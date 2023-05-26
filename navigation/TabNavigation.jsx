@@ -1,8 +1,7 @@
 import { useState, useEffect, useContext } from "react";
-import { View, Text, TextInput, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { useRoute } from "@react-navigation/native";
 import {
   collection,
   doc,
@@ -27,6 +26,8 @@ import {
   GoalsContext,
   MissionsContext,
   SavingsContext,
+  GoalModalContext,
+  SavingModalContext,
 } from "../context";
 
 const Tab = createBottomTabNavigator();
@@ -40,6 +41,8 @@ export default function TabNavigation() {
   const [goals, setGoals] = useState([]);
   const [missions, setMissions] = useState([]);
   const [savings, setSavings] = useState([]);
+  const [goalModalOpen, setGoalModalOpen] = useState(false);
+  const [savingModalOpen, setSavingModalOpen] = useState(false);
 
   const [isLoading, setLoading] = useState(false);
   const childRef = doc(db, "parents", email, "children", selectedChildId);
@@ -131,105 +134,129 @@ export default function TabNavigation() {
       <GoalsContext.Provider value={[goals, setGoals]}>
         <MissionsContext.Provider value={[missions, setMissions]}>
           <SavingsContext.Provider value={[savings, setSavings]}>
-            <Tab.Navigator
-              initialRouteName="Home"
-              screenOptions={{
-                headerShown: false,
-                tabBarStyle: styles.tabBar,
-                tabBarShowLabel: false,
-              }}
+            <GoalModalContext.Provider
+              value={[goalModalOpen, setGoalModalOpen]}
             >
-              <Tab.Screen
-                name="Home"
-                component={HomeScreen}
-                options={{
-                  tabBarIcon: ({ focused }) => (
-                    <View style={styles.iconContainer}>
-                      <Image
-                        source={focused ? icons.homeColored : icons.homeGrayed}
-                        style={{ width: 24, height: 24 }}
-                      />
-                      <Text
-                        style={
-                          focused ? styles.labelFocused : styles.labelUnfocused
-                        }
-                      >
-                        Beranda
-                      </Text>
-                    </View>
-                  ),
-                }}
-              />
-              <Tab.Screen
-                name="Activity"
-                component={ActivityScreen}
-                options={{
-                  tabBarIcon: ({ focused }) => (
-                    <View style={styles.iconContainer}>
-                      <Image
-                        source={
-                          focused ? icons.activityColored : icons.activityGrayed
-                        }
-                        style={{ width: 24, height: 24 }}
-                      />
-                      <Text
-                        style={
-                          focused ? styles.labelFocused : styles.labelUnfocused
-                        }
-                      >
-                        Aktivitas
-                      </Text>
-                    </View>
-                  ),
-                }}
-              />
-              <Tab.Screen
-                name="Achievement"
-                component={AchievementScreen}
-                options={{
-                  tabBarIcon: ({ focused }) => (
-                    <View style={styles.iconContainer}>
-                      <Image
-                        source={
-                          focused ? icons.achieveColored : icons.achieveGrayed
-                        }
-                        style={{ width: 24, height: 24 }}
-                      />
-                      <Text
-                        style={
-                          focused ? styles.labelFocused : styles.labelUnfocused
-                        }
-                      >
-                        Capaian
-                      </Text>
-                    </View>
-                  ),
-                }}
-              />
-              <Tab.Screen
-                name="Profile"
-                component={ProfileScreen}
-                options={{
-                  tabBarIcon: ({ focused }) => (
-                    <View style={styles.iconContainer}>
-                      <Image
-                        source={
-                          focused ? icons.profileColored : icons.profileGrayed
-                        }
-                        style={{ width: 24, height: 24 }}
-                      />
-                      <Text
-                        style={
-                          focused ? styles.labelFocused : styles.labelUnfocused
-                        }
-                      >
-                        Profil
-                      </Text>
-                    </View>
-                  ),
-                }}
-              />
-            </Tab.Navigator>
+              <SavingModalContext.Provider
+                value={[savingModalOpen, setSavingModalOpen]}
+              >
+                <Tab.Navigator
+                  initialRouteName="Home"
+                  screenOptions={{
+                    headerShown: false,
+                    tabBarStyle: styles.tabBar,
+                    tabBarShowLabel: false,
+                  }}
+                >
+                  <Tab.Screen
+                    name="Home"
+                    component={HomeScreen}
+                    options={{
+                      tabBarIcon: ({ focused }) => (
+                        <View style={styles.iconContainer}>
+                          <Image
+                            source={
+                              focused ? icons.homeColored : icons.homeGrayed
+                            }
+                            style={{ width: 24, height: 24 }}
+                          />
+                          <Text
+                            style={
+                              focused
+                                ? styles.labelFocused
+                                : styles.labelUnfocused
+                            }
+                          >
+                            Beranda
+                          </Text>
+                        </View>
+                      ),
+                    }}
+                  />
+                  <Tab.Screen
+                    name="Activity"
+                    component={ActivityScreen}
+                    options={{
+                      tabBarIcon: ({ focused }) => (
+                        <View style={styles.iconContainer}>
+                          <Image
+                            source={
+                              focused
+                                ? icons.activityColored
+                                : icons.activityGrayed
+                            }
+                            style={{ width: 24, height: 24 }}
+                          />
+                          <Text
+                            style={
+                              focused
+                                ? styles.labelFocused
+                                : styles.labelUnfocused
+                            }
+                          >
+                            Aktivitas
+                          </Text>
+                        </View>
+                      ),
+                    }}
+                  />
+                  <Tab.Screen
+                    name="Achievement"
+                    component={AchievementScreen}
+                    options={{
+                      tabBarIcon: ({ focused }) => (
+                        <View style={styles.iconContainer}>
+                          <Image
+                            source={
+                              focused
+                                ? icons.achieveColored
+                                : icons.achieveGrayed
+                            }
+                            style={{ width: 24, height: 24 }}
+                          />
+                          <Text
+                            style={
+                              focused
+                                ? styles.labelFocused
+                                : styles.labelUnfocused
+                            }
+                          >
+                            Capaian
+                          </Text>
+                        </View>
+                      ),
+                    }}
+                  />
+                  <Tab.Screen
+                    name="Profile"
+                    component={ProfileScreen}
+                    options={{
+                      tabBarIcon: ({ focused }) => (
+                        <View style={styles.iconContainer}>
+                          <Image
+                            source={
+                              focused
+                                ? icons.profileColored
+                                : icons.profileGrayed
+                            }
+                            style={{ width: 24, height: 24 }}
+                          />
+                          <Text
+                            style={
+                              focused
+                                ? styles.labelFocused
+                                : styles.labelUnfocused
+                            }
+                          >
+                            Profil
+                          </Text>
+                        </View>
+                      ),
+                    }}
+                  />
+                </Tab.Navigator>
+              </SavingModalContext.Provider>
+            </GoalModalContext.Provider>
           </SavingsContext.Provider>
         </MissionsContext.Provider>
       </GoalsContext.Provider>

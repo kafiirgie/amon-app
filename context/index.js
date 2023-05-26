@@ -7,6 +7,8 @@ const ChildDataContext = createContext();
 const GoalsContext = createContext();
 const MissionsContext = createContext();
 const SavingsContext = createContext();
+const GoalModalContext = createContext();
+const SavingModalContext = createContext();
 
 export {
   UserContext,
@@ -16,4 +18,6 @@ export {
   GoalsContext,
   MissionsContext,
   SavingsContext,
+  GoalModalContext,
+  SavingModalContext,
 };

@@ -5,7 +5,7 @@ import { images, COLORS, FONTS, SIZES } from "../../../constants";
 
 export default function CardSaving({ amount, handlePress }) {
   return (
-    <Pressable style={styles.cardContainer} handlePress={handlePress}>
+    <Pressable style={styles.cardContainer}>
       <View style={styles.bgContainer}>
         <View style={styles.circle1} />
         <View style={styles.circle2} />

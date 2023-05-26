@@ -22,6 +22,9 @@ import CardBadge from "./common/cards/CardBadge";
 import LoginForm from "./common/forms/LoginForm";
 import RegisterForm from "./common/forms/RegisterForm";
 import AddChildForm from "./common/forms/AddChildForm";
+import AddGoalForm from "./common/forms/AddGoalForm";
+import AddMissionForm from "./common/forms/AddMissionForm";
+import AddSavingForm from "./common/forms/AddSavingForm";
 
 // Header
 import Header from "./common/header/Header";
@@ -29,6 +32,11 @@ import SubHeader from "./common/header/SubHeader";
 import HeaderwithDesc from "./common/header/HeaderwithDesc";
 import HeaderHome from "./common/header/HeaderHome";
 import HeaderAchieve from "./common/header/HeaderAchieve";
+
+// Modals
+import ModalAddGoal from "./common/modals/ModalAddGoal";
+import ModalAddMission from "./common/modals/ModalAddMission";
+import ModalAddSaving from "./common/modals/ModalAddSaving";
 
 // Select Child
 import SelectChildEmpty from "./selectchild/SelectChildEmpty";
@@ -60,11 +68,17 @@ export {
   LoginForm,
   RegisterForm,
   AddChildForm,
+  AddGoalForm,
+  AddMissionForm,
+  AddSavingForm,
   Header,
   SubHeader,
   HeaderwithDesc,
   HeaderHome,
   HeaderAchieve,
+  ModalAddGoal,
+  ModalAddMission,
+  ModalAddSaving,
   SelectChildEmpty,
   SelectChildFilled,
   GoalsEmpty,

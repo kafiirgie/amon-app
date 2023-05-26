@@ -38,7 +38,7 @@ export default function AddChildForm() {
             const id = values.name.trim().toLowerCase();
             const newChild = {
               name: values.name,
-              passcode: values.passcode,
+              passcode: parseInt(values.passcode),
               total_points: 0,
               total_savings: 0,
             };
