@@ -18,11 +18,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#70d2c7"
-      }
+      },
+      "package": "com.kafiirgie.amonapp"
     },
     "web": {
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b0164b53-fd46-4e95-b5c7-b5d77ae9d133"
+      }
     }
   }
 }

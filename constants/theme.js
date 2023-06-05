@@ -8,6 +8,7 @@ const COLORS = {
 
   neutral: "#37474F",
   neutral2: "#90A4AE",
+  neutral3: "#d0dee4",
 
   white: "#FFFFFF",
 

@@ -11,8 +11,8 @@ export default function CardMission({
   is_done,
   is_pending,
 }) {
-  // const [done, setDone] = useState(is_done);
-  // const [pending, setPending] = useState(is_pending);
+  const [done, setDone] = useState(is_done);
+  const [pending, setPending] = useState(is_pending);
   const currentDate = new Date();
   const endDate = new Date(end_date);
   const diffms = endDate - currentDate;
@@ -49,9 +49,14 @@ export default function CardMission({
         <Text style={styles.text}>{reward}</Text>
       </View>
       <ButtoninCard
-        text={is_done ? "Selesai" : "Tandai Selesai"}
-        isFull={true}
-        // handlePress={() => setDone(!done)}
+        text={
+          done ? "Selesai" : pending ? "Menunggu Verifikasi" : "Tandai Selesai"
+        }
+        isFull
+        isGreen={pending ? false : true}
+        handlePress={() => {
+          !done && setPending(!pending);
+        }}
       />
     </Pressable>
   );

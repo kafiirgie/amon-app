@@ -2,13 +2,23 @@ import { Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { COLORS, FONTS, SIZES } from "../../../constants";
 
-export default function ButtoninCard({ text, handlePress, isGreen, isFull }) {
+export default function ButtoninCard({
+  text,
+  handlePress,
+  isGreen,
+  isDisabled,
+  isFull,
+}) {
   return (
     <TouchableOpacity
       onPress={handlePress}
       style={[
         {
-          backgroundColor: isGreen ? COLORS.primary : COLORS.white,
+          backgroundColor: isGreen
+            ? COLORS.primary
+            : isDisabled
+            ? COLORS.neutral3
+            : COLORS.white,
           paddingHorizontal: 16,
           paddingVertical: 6,
           borderRadius: 8,
@@ -21,7 +31,11 @@ export default function ButtoninCard({ text, handlePress, isGreen, isFull }) {
       <Text
         style={{
           fontFamily: FONTS.regular,
-          color: isGreen ? COLORS.white : COLORS.primary,
+          color: isGreen
+            ? COLORS.white
+            : isDisabled
+            ? COLORS.primary4
+            : COLORS.primary,
           fontSize: SIZES.small,
         }}
       >
